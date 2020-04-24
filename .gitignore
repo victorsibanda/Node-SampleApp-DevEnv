@@ -1,0 +1,5 @@
+.git
+.vagrant/
+Berksfile.lock
+ubuntu-xenial-*
+Cookbooks/
