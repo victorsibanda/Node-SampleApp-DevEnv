@@ -42,11 +42,6 @@
       "run_list" : ["node::default"]
     },
     {
-      "type": "chef-solo",
-      "cookbook_paths": ["./cookbooks"],
-      "run_list" : ["mongo::default"]
-    },
-    {
       "type": "shell",
       "inline": ["mkdir /home/ubuntu/app"]
     },
