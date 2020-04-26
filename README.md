@@ -1,68 +1,64 @@
-## Node Dev environment
+# Node Sample App Dev AMI
 
-This Environment allows you to vagrant up the development environment and make adjustments to the code. If you make changes in this git repository this will trigger tests to run on Jenkins.
+This project consists of a Nodejs App and a Mongo Database.
 
-## Prerequisites
-To run this environment you will need the below
+- The repository contains a development environment for the project. It uses node package manager and provisioning of the app/db to display a working app, posts and fibonacci on a web browser.
+
+- Implementation of a reverse proxy within the application in order to add security, performance and reliability.
+
+### Prerequisites
+- In order to for this project to run you must have the items below:
+
+- Packer
+- GIT
+- Chef
+- AWS Credentials
+- AWS Key Pair
 - Vagrant
-- Git
-- VirtualBox.
+- AWS CLI2
+- VirtualBox
 
-## To Start
-
+### Clone Repo
+- Download this repository, open your terminal and run:
 ```
-git clone git@github.com:victorsibanda/NodeDevEnv.git
+git clone git@github.com:victorsibanda/Node-SampleApp-DevEnv.git
 ```
-
-## To Use
-
+### Testing
+- Use VM
 ```
 vagrant up
 
 vagrant ssh app
 ```
-
-## To Test and Use App :monkey:
-
+- To Test the App
+run:
 ```
 cd /home/ubuntu/app
 
 npm install
 npm test
-npm start
 
 ```
 
-## To Access the App:
+## Installation and Use
+- In order to build an AMI using this repo
 
-- Goto
-
+### Berksfile
+- Download the relevant Cookbook files using
 ```
-http://development.local
-```
-
-
-- To see the Blog
-```
-http://development.local/posts
+berks vendor Cookbooks
 ```
 
-
-TODO :: #### Suggested Edits for Testing
-
+### Packer
+- Validate the packer file using the command below:
 ```
-server {
-  listen 80;
-  listen [::]:80;
-
-
-
-  server_name example.com;
-
-
-
-  location / {
-      proxy_pass http://localhost:3000/;
-  }
-}
+packer validate packer.json
 ```
+- If that is successful move on to the next step, although if any errors make the necessary edits.
+
+- Now build your AMI Using:
+```
+packer build packer.json
+```
+
+- Once your AMI is Built, you may use it to create more instances. 
